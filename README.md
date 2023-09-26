@@ -1,4 +1,4 @@
-# CloudWatch AgentでEC2のカスタムメトリクスとログ取得
+# CloudWatch Agentでカスタムメトリクスとログ取得
 ## 構成
 * SSMのRun Commandを使用してCloudWatch Agentのダウンロード
 * SSMのパラメータストアにCloudWatch Agentの設定ファイルを保存
