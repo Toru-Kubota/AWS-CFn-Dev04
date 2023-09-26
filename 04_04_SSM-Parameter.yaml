@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: SSM Parameter Store for CloudWatch config file
+
+Parameters:
+  Prefix:
+    Type: String
+
+Resources:
+  SSMParameter:
+    Type: AWS::SSM::Parameter
+    Properties: 
+      DataType: text
+      Name: !Sub "${Prefix}-CWPS"
+      Type: String
+      Value: !Sub |
+        {
+          "metrics": {
+            "metrics_collected": {
+              "cpu": {
+                "resources": [
+                "*"
+                ],
+                "measurement": [
+                  "usage_active"
+                ],
+                "totalcpu": true
+              },
+              "mem": {
+                "measurement": [
+                  "used_percent"
+                ]
+              }
+            }
+          },
+          "logs": {
+            "logs_collected": {
+              "files": {
+                "collect_list": [
+                  {
+                    "file_path": "/var/log/messages",
+                    "log_group_name": "/var/log/messages"
+                  }
+                ]
+              }
+            }
+          }
+        }
